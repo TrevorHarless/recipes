@@ -1,0 +1,32 @@
+services:
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: recipeapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  recipes-backend:
+    build:
+      context: ./recipes-backend
+    container_name: recipes-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/recipeapp
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - postgres-db
+
+  recipes-frontend:
+    build:
+      context: ./recipes-frontend
+    container_name: recipes-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - recipes-backend

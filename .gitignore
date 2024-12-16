@@ -1,0 +1,22 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore node_modules for the frontend
+recipes-frontend/node_modules/
+
+# Ignore target and generated files for the backend
+recipes-backend/target/
+recipes-backend/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore log files
+*.log
+
+# Ignore IDE settings (optional, depending on IDE)
+.vscode/
+.idea/
+*.iml
+
+# Ignore environment variables or secrets (if applicable)
+.env
+.env.local
+.env.production
